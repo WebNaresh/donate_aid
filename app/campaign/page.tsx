@@ -19,10 +19,10 @@ import { useRouter } from "next/navigation";
 
 interface Campaign {
   id: string;
-  title: string;
+  name: string;
   description: string;
-  startDate: string;
-  endDate: string;
+  start_date: string;
+  end_date: string;
   participantsCount: number;
 }
 
@@ -41,10 +41,6 @@ export default function CampaignPage() {
     queryKey: ["campaigns"],
     queryFn: fetchCampaigns,
   });
-
-  const handleCreateCampaign = () => {
-    router.push("/campaign/create");
-  };
 
   if (isLoading) {
     return (
@@ -87,23 +83,26 @@ export default function CampaignPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Campaigns</h1>
-        <Button onClick={handleCreateCampaign}>
-          <PlusCircle className="mr-2 h-4 w-4" /> Create Campaign
-        </Button>
+        <Link href="/campaign/create" prefetch>
+          <Button variant="outline">
+            <PlusCircle className="w-4 h-4 mr-2" />
+            Create Campaign
+          </Button>
+        </Link>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {campaigns?.map((campaign) => (
           <Card key={campaign.id}>
             <CardHeader>
-              <CardTitle>{campaign.title}</CardTitle>
+              <CardTitle>{campaign.name}</CardTitle>
               <CardDescription>{campaign.description}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center mb-2">
                 <Calendar className="mr-2 h-4 w-4 text-muted-foreground" />
                 <span className="text-sm text-muted-foreground">
-                  {new Date(campaign.startDate).toLocaleDateString()} -{" "}
-                  {new Date(campaign.endDate).toLocaleDateString()}
+                  {new Date(campaign.start_date).toLocaleDateString()} -{" "}
+                  {new Date(campaign.end_date).toLocaleDateString()}
                 </span>
               </div>
               <div className="flex items-center">

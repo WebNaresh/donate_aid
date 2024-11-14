@@ -35,19 +35,18 @@ model Campaign {
   id                String          @id @default(uuid())
   name              String
   description       String
-  about             AboutCampaign[]
-  product_wants     Product[]
   images_videos_url String[]
   characteristics   String[]
   donation_amount   Float
-
-  end_date   DateTime
-  status     CampaignStatus
-  user_id    String
-  start_date DateTime       @default(now())
-  creator    User           @relation(fields: [user_id], references: [id])
-  Donation   Donation[]
-  Updates    Updates[]
+  user_id           String
+  start_date        DateTime        @default(now())
+  end_date          DateTime
+  about             AboutCampaign[]
+  product_wants     Product[]
+  status            CampaignStatus
+  creator           User            @relation(fields: [user_id], references: [id])
+  Donation          Donation[]
+  Updates           Updates[]
 }
 
 enum CampaignStatus {
