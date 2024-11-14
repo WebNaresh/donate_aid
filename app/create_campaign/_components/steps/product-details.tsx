@@ -3,11 +3,24 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
+import { CampaignFormData } from "../campaign-form";
 import { uploadToS3 } from "./action";
 
+interface Product {
+  name: string;
+  total_quantity_want: number;
+  price_per_unit: number;
+  product_image_url: string;
+}
+
+interface FormData {
+  product: Product;
+  product_wants: Product[];
+}
+
 interface ProductDetailsProps {
-  formData: any;
-  handleChange: (field: string, value: any) => void;
+  formData: CampaignFormData;
+  handleChange: (field: keyof CampaignFormData, value: any) => void;
 }
 
 export default function ProductDetails({

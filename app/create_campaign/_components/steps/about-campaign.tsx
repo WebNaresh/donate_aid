@@ -6,12 +6,14 @@ import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { uploadToS3 } from "./action";
 
+interface CampaignFormData {
+  data: string;
+  image_url: string;
+}
+
 interface AboutCampaignProps {
-  formData: {
-    data: string;
-    image_url: string;
-  };
-  handleChange: (field: string, value: string) => void;
+  formData: CampaignFormData;
+  handleChange: (field: keyof CampaignFormData, value: any) => void;
 }
 
 export default function AboutCampaign({

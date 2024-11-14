@@ -1,4 +1,25 @@
-export default function Summary({ formData }: { formData: any }) {
+import { CampaignFormData } from "../campaign-form";
+
+interface FormData {
+  name: string;
+  description: string;
+  status: string;
+  characteristics: string[];
+  donation_amount: number;
+  start_date: string;
+  end_date: string;
+  images_videos_url: string[];
+  about: { data: string; image_url?: string }[];
+  product_wants: {
+    name: string;
+    total_quantity_want: number;
+    price_per_unit: number;
+    product_image_url?: string;
+  }[];
+  updates: any[];
+}
+
+export default function Summary({ formData }: { formData: CampaignFormData }) {
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-bold">Campaign Summary</h2>

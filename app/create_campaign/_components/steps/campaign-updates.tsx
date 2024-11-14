@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
+import { CampaignFormData } from "../campaign-form";
 import { uploadToS3 } from "./action";
 
 interface CampaignUpdatesProps {
@@ -13,7 +14,7 @@ interface CampaignUpdatesProps {
       image_url: string;
     }[];
   };
-  handleChange: (field: string, value: any) => void;
+  handleChange: (field: keyof CampaignFormData, value: any) => void;
 }
 
 export default function CampaignUpdates({

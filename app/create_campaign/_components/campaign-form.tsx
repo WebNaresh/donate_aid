@@ -17,9 +17,29 @@ import CampaignUpdates from "./steps/campaign-updates";
 import ProductDetails from "./steps/product-details";
 import Summary from "./steps/summary";
 
+export interface CampaignFormData {
+  name: string;
+  description: string;
+  status: string;
+  images_videos_url: string[];
+  characteristics: string;
+  donation_amount: number;
+  start_date: string;
+  end_date: string;
+  data: string;
+  image_url: string;
+  product: {
+    name: string;
+    total_quantity_want: number;
+    price_per_unit: number;
+    product_image_url: string;
+  };
+  updates: any[];
+}
+
 export default function CampaignForm() {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<CampaignFormData>({
     name: "",
     description: "",
     status: "ACTIVE",
@@ -39,7 +59,7 @@ export default function CampaignForm() {
     updates: [],
   });
 
-  const handleChange = (field: string, value: any) => {
+  const handleChange = (field: keyof CampaignFormData, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 

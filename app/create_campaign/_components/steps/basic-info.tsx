@@ -9,13 +9,15 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
+interface FormData {
+  name: string;
+  description: string;
+  status: string;
+}
+
 interface BasicInfoProps {
-  formData: {
-    name: string;
-    description: string;
-    status: string;
-  };
-  handleChange: (field: string, value: any) => void;
+  formData: FormData;
+  handleChange: (field: keyof FormData, value: any) => void;
 }
 
 export default function BasicInfo({ formData, handleChange }: BasicInfoProps) {

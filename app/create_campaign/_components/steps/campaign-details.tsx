@@ -6,15 +6,17 @@ import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { uploadToS3 } from "./action";
 
+interface FormData {
+  images_videos_url: string[];
+  characteristics: string;
+  donation_amount: number;
+  start_date: string;
+  end_date: string;
+}
+
 interface CampaignDetailsProps {
-  formData: {
-    images_videos_url: string[];
-    characteristics: string;
-    donation_amount: number;
-    start_date: string;
-    end_date: string;
-  };
-  handleChange: (field: string, value: any) => void;
+  formData: FormData;
+  handleChange: (field: keyof FormData, value: any) => void;
 }
 
 export default function CampaignDetails({
@@ -28,7 +30,7 @@ export default function CampaignDetails({
     if (files && files.length > 0) {
       setUploading(true);
       const uploadedUrls = [];
-      for (let file of files) {
+      for (const file of files) {
         try {
           const url = await uploadToS3(file);
           uploadedUrls.push(url);
