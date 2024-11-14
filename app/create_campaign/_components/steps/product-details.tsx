@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { uploadToS3 } from "./action";
 
@@ -87,7 +88,7 @@ export default function ProductDetails({
         {uploading && <p>Uploading...</p>}
         {formData.product_wants[0]?.product_image_url && (
           <div className="mt-2 relative">
-            <img
+            <Image
               src={formData.product_wants[0]?.product_image_url}
               alt="Product"
               className="w-full h-32 object-cover"

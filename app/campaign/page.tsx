@@ -15,7 +15,6 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Calendar, PlusCircle, Users } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 interface Campaign {
   id: string;
@@ -32,7 +31,6 @@ const fetchCampaigns = async (): Promise<Campaign[]> => {
 };
 
 export default function CampaignPage() {
-  const router = useRouter();
   const {
     data: campaigns,
     isLoading,
@@ -83,7 +81,7 @@ export default function CampaignPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Campaigns</h1>
-        <Link href="/campaign/create" prefetch>
+        <Link href="/create_campaign" prefetch>
           <Button variant="outline">
             <PlusCircle className="w-4 h-4 mr-2" />
             Create Campaign

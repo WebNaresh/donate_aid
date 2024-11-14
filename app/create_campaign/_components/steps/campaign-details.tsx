@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { uploadToS3 } from "./action";
 
@@ -60,7 +61,7 @@ export default function CampaignDetails({
           {formData.images_videos_url.map((url, index) => (
             <div key={index} className="relative">
               {url.includes("image") ? (
-                <img
+                <Image
                   src={url}
                   alt={`Uploaded ${index}`}
                   className="w-full h-32 object-cover"

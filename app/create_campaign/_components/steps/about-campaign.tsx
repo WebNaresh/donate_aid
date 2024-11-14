@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { uploadToS3 } from "./action";
 
@@ -55,7 +56,7 @@ export default function AboutCampaign({
         {uploading && <p>Uploading...</p>}
         {formData.image_url && (
           <div className="mt-2 relative">
-            <img
+            <Image
               src={formData.image_url}
               alt="Uploaded"
               className="w-full h-32 object-cover"

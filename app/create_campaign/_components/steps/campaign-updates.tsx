@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { uploadToS3 } from "./action";
 
@@ -70,7 +71,7 @@ export default function CampaignUpdates({
         {uploading && <p>Uploading...</p>}
         {updateImage && (
           <div className="mt-2 relative">
-            <img
+            <Image
               src={updateImage}
               alt="Update"
               className="w-full h-32 object-cover"
@@ -93,7 +94,7 @@ export default function CampaignUpdates({
           <div key={index} className="mt-2 p-2 border rounded">
             <p>{update.data}</p>
             {update.image_url && (
-              <img
+              <Image
                 src={update.image_url}
                 alt={`Update ${index + 1}`}
                 className="mt-2 w-full h-32 object-cover"
