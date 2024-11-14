@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String     @id @default(uuid())
+  first_name  String
+  last_name   String
+  middle_name String
+  pan_no      String?    @unique
+  email       String     @unique
+  phone_no    String     @unique
+  role        Role
+  Campaign    Campaign[]
+  Donation    Donation[]
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model Campaign {
+  id                String          @id @default(uuid())
+  name              String
+  description       String
+  about             AboutCampaign[]
+  product_wants     Product[]
+  images_videos_url String[]
+  characteristics   String[]
+  donation_amount   Float
+
+  end_date   DateTime
+  status     CampaignStatus
+  user_id    String
+  start_date DateTime       @default(now())
+  creator    User           @relation(fields: [user_id], references: [id])
+  Donation   Donation[]
+  Updates    Updates[]
+}
+
+enum CampaignStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model AboutCampaign {
+  id         String    @id @default(uuid())
+  data       String
+  image_url  String[]
+  Campaign   Campaign? @relation(fields: [campaignId], references: [id])
+  campaignId String?
+}
+
+model Updates {
+  id         String   @id @default(uuid())
+  data       String
+  image_url  String[]
+  Campaign   Campaign @relation(fields: [campaignId], references: [id])
+  campaignId String
+}
+
+model Product {
+  id                  String   @id @default(uuid())
+  name                String
+  total_quantity_want Int
+  price_per_unit      Float
+  product_image_url   String[]
+  Campaign            Campaign @relation(fields: [campaignId], references: [id])
+  campaignId          String
+}
+
+model Donation {
+  id         String   @id @default(uuid())
+  amount     Float
+  user_id    String
+  campaignId String
+  Campaign   Campaign @relation(fields: [campaignId], references: [id])
+  User       User     @relation(fields: [user_id], references: [id])
+}
