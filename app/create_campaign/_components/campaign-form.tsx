@@ -59,7 +59,20 @@ export default function CampaignForm() {
     updates: [],
   });
 
-  const handleChange = (field: keyof CampaignFormData, value: any) => {
+  const handleChange = (
+    field: keyof CampaignFormData,
+    value:
+      | string
+      | number
+      | string[]
+      | {
+          name: string;
+          total_quantity_want: number;
+          price_per_unit: number;
+          product_image_url: string;
+        }
+      | { data: string; image_url: string }[]
+  ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 

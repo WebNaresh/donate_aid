@@ -6,21 +6,20 @@ import { ChangeEvent, useState } from "react";
 import { CampaignFormData } from "../campaign-form";
 import { uploadToS3 } from "./action";
 
-interface Product {
-  name: string;
-  total_quantity_want: number;
-  price_per_unit: number;
-  product_image_url: string;
-}
-
-interface FormData {
-  product: Product;
-  product_wants: Product[];
-}
-
 interface ProductDetailsProps {
-  formData: CampaignFormData;
-  handleChange: (field: keyof CampaignFormData, value: any) => void;
+  formData: any;
+  handleChange: (
+    field: keyof CampaignFormData,
+    value:
+      | string
+      | number
+      | {
+          name: string;
+          total_quantity_want: number;
+          price_per_unit: number;
+          product_image_url: string;
+        }
+  ) => void;
 }
 
 export default function ProductDetails({
@@ -111,7 +110,7 @@ export default function ProductDetails({
               size="sm"
               className="absolute top-0 right-0"
               onClick={() =>
-                handleChange("product_wants", {
+                handleChange("product", {
                   ...formData.product_wants,
                   product_image_url: "",
                 })

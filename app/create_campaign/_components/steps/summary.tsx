@@ -1,5 +1,3 @@
-import { CampaignFormData } from "../campaign-form";
-
 interface FormData {
   name: string;
   description: string;
@@ -19,7 +17,7 @@ interface FormData {
   updates: any[];
 }
 
-export default function Summary({ formData }: { formData: CampaignFormData }) {
+export default function Summary({ formData }: { formData: any }) {
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-bold">Campaign Summary</h2>

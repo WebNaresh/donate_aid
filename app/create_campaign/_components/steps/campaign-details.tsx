@@ -16,7 +16,10 @@ interface FormData {
 
 interface CampaignDetailsProps {
   formData: FormData;
-  handleChange: (field: keyof FormData, value: any) => void;
+  handleChange: (
+    field: keyof FormData,
+    value: string | number | string[]
+  ) => void;
 }
 
 export default function CampaignDetails({

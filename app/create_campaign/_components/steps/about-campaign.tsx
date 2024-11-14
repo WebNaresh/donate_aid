@@ -13,7 +13,7 @@ interface CampaignFormData {
 
 interface AboutCampaignProps {
   formData: CampaignFormData;
-  handleChange: (field: keyof CampaignFormData, value: any) => void;
+  handleChange: (field: keyof CampaignFormData, value: string) => void;
 }
 
 export default function AboutCampaign({

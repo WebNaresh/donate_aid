@@ -14,7 +14,10 @@ interface CampaignUpdatesProps {
       image_url: string;
     }[];
   };
-  handleChange: (field: keyof CampaignFormData, value: any) => void;
+  handleChange: (
+    field: keyof CampaignFormData,
+    value: { data: string; image_url: string }[]
+  ) => void;
 }
 
 export default function CampaignUpdates({

@@ -17,7 +17,7 @@ interface FormData {
 
 interface BasicInfoProps {
   formData: FormData;
-  handleChange: (field: keyof FormData, value: any) => void;
+  handleChange: (field: keyof FormData, value: string) => void;
 }
 
 export default function BasicInfo({ formData, handleChange }: BasicInfoProps) {

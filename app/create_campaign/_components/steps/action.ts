@@ -39,7 +39,7 @@ export async function uploadToS3(file: File) {
   }
 }
 
-export async function createCampaign(formData: Record<string, any>) {
+export async function createCampaign(formData: any) {
   // Here you would typically save the campaign data to your database
   // For this example, we'll just log the data and return a success message
   console.log("Campaign data:", formData);
